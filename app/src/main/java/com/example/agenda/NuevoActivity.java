@@ -1,26 +1,35 @@
 package com.example.agenda;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import db.DbContactos;
-import db.DbHelper;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.example.agenda.db.DbContactos;
 
 public class NuevoActivity extends AppCompatActivity {
     EditText txtNombre, txtTelefono, txtCorreoElectronico;
     Button btnGuarda;
-
+    Toolbar toolbar;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nuevo);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        // Establecer el ícono de navegación y agregar un listener
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.baseline_arrow_back_24);
 
         txtNombre = findViewById(R.id.txtNombre);
         txtTelefono = findViewById(R.id.txtTelefono);
@@ -41,6 +50,15 @@ public class NuevoActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            // Procedimiento de redireccionamiento aquí, por ejemplo:
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
     private void limpiar(){
         txtNombre.setText("");
