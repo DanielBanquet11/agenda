@@ -15,13 +15,15 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.example.agenda.db.DbContactos;
 import com.example.agenda.entidades.Contactos;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class EditarActivity extends AppCompatActivity {
 
     EditText txtNombre, txtTelefono, txtCorreo;
     Button btnGuarda;
     Contactos contacto;
-
+    FloatingActionButton fabEditar;
+    FloatingActionButton fabEliminar;
     Toolbar toolbar;
     int id = 0;
 
@@ -42,6 +44,12 @@ public class EditarActivity extends AppCompatActivity {
         txtTelefono = findViewById(R.id.txtTelefono);
         txtCorreo = findViewById(R.id.txtCorreoELectronico);
         btnGuarda = findViewById(R.id.btnGuarda);
+        fabEditar = findViewById(R.id.fabEditar);
+        fabEditar.setVisibility(View.INVISIBLE);
+        fabEliminar = findViewById(R.id.fabEliminar);
+        fabEliminar.setVisibility(View.INVISIBLE);
+
+
         if (savedInstanceState == null){
             Bundle extras = getIntent().getExtras();
             if (extras == null){
